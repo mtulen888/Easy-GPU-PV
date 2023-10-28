@@ -12,7 +12,7 @@ If (!($DriveLetter -like "*:*")) {
 If ($GPUName -eq "AUTO") {
     $PartitionableGPUList = Get-WmiObject -Class "Msvm_PartitionableGpu" -ComputerName $env:COMPUTERNAME -Namespace "ROOT\virtualization\v2"
     $DevicePathName = $PartitionableGPUList.Name | Select-Object -First 1
-    $GPU = Get-PnpDevice | Where-Object {($_.DeviceID -like "*$($DevicePathName.Substring(8,16))*") -and ($_.Status -eq "OK")} | Select-Object -First 1
+    $GPU = Get-PnpDevice -Class 'Display' | Where-Object {($_.DeviceID -like "*$($DevicePathName.Substring(8,16))*") -and ($_.Status -eq "OK")} | Select-Object -First 1
     $GPUName = $GPU.Friendlyname
     $GPUServiceName = $GPU.Service 
     }
