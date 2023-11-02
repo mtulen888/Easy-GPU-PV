@@ -11,8 +11,8 @@ Param (
 #>
 
 Param (
-[string]$VMName,
-[string]$GPUName,
+[string]$VMName = "GPUPV",
+[string]$GPUName = "AUTO",
 [string]$Hostname = $ENV:Computername
 )
 
